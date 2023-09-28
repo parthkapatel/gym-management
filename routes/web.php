@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [\App\Http\Controllers\UsersController::class,"index"])->name("login");
+Route::get('/main', [\App\Http\Controllers\Controller::class,"main"])->name("main");
+Route::post("/logout,",[\App\Http\Controllers\UsersController::class,'logout'])->name("logout");
+
+Route::resource('users',\App\Http\Controllers\UsersController::class);
+Route::resource('members',\App\Http\Controllers\MemberController::class);
+Route::resource('trainers',\App\Http\Controllers\TrainerController::class);
